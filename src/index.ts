@@ -1,5 +1,8 @@
+import dotenv from "dotenv"
 import Provider from "oidc-provider"
 import express from "express"
+
+dotenv.config()
 
 const start = async () => {
   const app = express()
@@ -27,8 +30,9 @@ const start = async () => {
 
   app.use(oidc.callback())
 
-  app.listen(3000, () => {
-    console.log("Running on 3000")
+  const PORT = process.env.PORT || 3000
+  app.listen(PORT, () => {
+    console.log(`Running on ${PORT}`)
   })
 }
 
